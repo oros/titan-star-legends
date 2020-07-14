@@ -26,6 +26,7 @@
     "@types/react-dom": "^16.9.8",
     "babel-loader": "^8.1.0",
     "css-loader": "^3.6.0",
+    "sass-loader": "^9.0.2",
     "source-map-loader": "^1.0.1",
     "style-loader": "^1.2.1",
     "ts-loader": "^8.0.0",
@@ -35,6 +36,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hot-loader": "^4.12.21"

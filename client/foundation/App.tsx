@@ -1,7 +1,7 @@
 import React from 'react';
 import { hot } from 'react-hot-loader';
 
-import Styles from './App.module.css';
+import Styles from './App.module.scss';
 
 export function App() {
   return (
