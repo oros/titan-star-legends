@@ -47,6 +47,10 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
   ],
   resolve: {
+    alias: {
+      "@assets": path.resolve(__dirname, 'client/assets/'),
+      "@foundation": path.resolve(__dirname, 'client/foundation/'),
+    },
     extensions: [".js", ".ts", ".tsx"]
   },
 };
