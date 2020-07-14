@@ -4,24 +4,36 @@ const webpack = require("webpack");
 module.exports = {
   devServer: {
     contentBase: path.join(__dirname, "public/"),
+    hotOnly: true,
     port: 3000,
     publicPath: "http://localhost:3000/dist/",
-    hotOnly: true
   },
-  entry: "./client/index.js",
+  entry: "./client/index.tsx",
   mode: "development",
   module: {
     rules: [
       {
-        exclude: /(node_modules)/,
-        loader: "babel-loader",
-        options: { presets: ["@babel/env"] },
-        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: "ts-loader",
+        test: /\.ts(x?)$/,
+      },
+      {
+        enforce: "pre",
+        loader: "source-map-loader",
+        test: /\.js$/,
       },
       {
         exclude: /(node_modules)/,
         test: /\.css$/,
-        use: ["style-loader", "css-loader"]
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+            }
+          }
+        ]
       }
     ]
   },
@@ -30,6 +42,10 @@ module.exports = {
     path: path.resolve(__dirname, "dist/"),
     publicPath: "/dist/",
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()],
-  resolve: { extensions: ["*", ".js", ".jsx"] },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+  ],
+  resolve: {
+    extensions: [".js", ".ts", ".tsx"]
+  },
 };

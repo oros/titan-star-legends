@@ -1,11 +1,11 @@
 import React from 'react';
-import { hot } from "react-hot-loader";
+import { hot } from 'react-hot-loader';
 
-import './App.css';
+import Styles from './App.module.css';
 
 export function App() {
   return (
-    <div className="App">
+    <div className={Styles.App}>
       <h1> Hello, World! </h1>
     </div>
   );
