@@ -10,11 +10,17 @@
       "assets/*": [
         "client/assets/*"
       ],
+      "components/*": [
+        "client/components/*"
+      ],
       "foundation/*": [
         "client/foundation/*"
       ],
       "styles/*": [
         "client/styles/*"
+      ],
+      "types/*": [
+        "client/types/*"
       ],
     },
     "sourceMap": true,

@@ -27,3 +27,4 @@ Navigate to http://localhost:3000 in your browser.
 - [Adding TypeScsript to React](https://www.typescriptlang.org/docs/handbook/react-&-webpack.html)
 - [CSS Modules](https://programmingwithmosh.com/react/css-modules-react/)
 - [Integrating SASS](https://scotch.io/starters/react/adding-sass-to-create-react-app-applications)
+- [CSS Sprites](https://css-tricks.com/css-sprites/)

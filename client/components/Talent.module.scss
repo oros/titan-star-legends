@@ -1,0 +1,20 @@
+$border__talent: 4px solid #4f4f4f;
+$border__talent--selected: 4px solid #4f4f4f;
+
+.Talent {
+  background: url('~assets/talent-icons-sprite.png');
+  background-position: 0 100%;
+  background-size: 800%;
+  border: $border__talent;
+  height: 4rem;
+  width: 4rem;
+
+  &.Selected {
+    background-position-y: 0;
+    border: $border__talent--selected;
+  }
+}
+
+.Chevron {
+  background-position-x: 0;
+}
