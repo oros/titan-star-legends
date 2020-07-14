@@ -31,11 +31,17 @@ module.exports = {
             loader: "css-loader",
             options: {
               modules: true,
+              url: true,
             }
           },
           "sass-loader",
         ]
-      }
+      },
+      {
+        exclude: /(node_modules)/,
+        loader: "file-loader",
+        test: /\.(png)$/,
+      },
     ]
   },
   output: {
@@ -48,8 +54,8 @@ module.exports = {
   ],
   resolve: {
     alias: {
-      "@assets": path.resolve(__dirname, 'client/assets/'),
-      "@foundation": path.resolve(__dirname, 'client/foundation/'),
+      "assets": path.resolve(__dirname, 'client/assets/'),
+      "foundation": path.resolve(__dirname, 'client/foundation/'),
     },
     extensions: [".js", ".ts", ".tsx"]
   },

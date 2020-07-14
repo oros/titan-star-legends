@@ -7,10 +7,10 @@
     "noImplicitAny": true,
     "outDir": "./dist/",
     "paths": {
-      "@assets/*": [
+      "assets/*": [
         "client/assets/*"
       ],
-      "@foundation/*": [
+      "foundation/*": [
         "client/foundation/*"
       ],
     },

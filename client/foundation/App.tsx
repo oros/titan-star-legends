@@ -5,9 +5,7 @@ import Styles from './App.module.scss';
 
 export function App() {
   return (
-    <div className={Styles.App}>
-      <h1> Hello, World! </h1>
-    </div>
+    <div className={Styles.App} />
   );
 }
 
