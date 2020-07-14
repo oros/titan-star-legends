@@ -1,7 +1,26 @@
+@import '~styles/breakpoints';
+
 .App {
-  background: url("~assets/talent-calc-bg.png");
+  background: url('~assets/talent-calc-bg.png');
   background-repeat: no-repeat;
   background-size: cover;
+  display: grid;
   height: 100vh;
+  padding: 1rem;
   width: 100vw;
+
+  grid-template-areas:
+    'header'
+    'content';
+
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content 1fr;
+}
+
+.Header {
+  grid-area: header;
+}
+
+.Content {
+  grid-area: content;
 }

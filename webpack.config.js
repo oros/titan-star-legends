@@ -56,6 +56,7 @@ module.exports = {
     alias: {
       "assets": path.resolve(__dirname, 'client/assets/'),
       "foundation": path.resolve(__dirname, 'client/foundation/'),
+      "styles": path.resolve(__dirname, 'client/styles/'),
     },
     extensions: [".js", ".ts", ".tsx"]
   },

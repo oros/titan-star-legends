@@ -1,0 +1,57 @@
+@import '~styles/breakpoints';
+@import '~styles/fonts';
+
+$background-color__header: #191C1F;
+
+.Header {
+  align-items: center;
+  background-color: $background-color__header;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+  width: 100%;
+
+  @include breakpoint('huge') {
+    flex-direction: row;
+  }
+}
+
+.Title {
+  color: $color__title;
+  font-size: 1.4rem;
+  font-weight: 700;
+
+  @include breakpoint('large') {
+    font-size: 1.8rem;
+  }
+
+  @include breakpoint('huge') {
+    font-size: 2rem;
+
+    &:after {
+      content: '-';
+      margin: 0 1rem;
+    }
+  }
+}
+
+.Subtitle {
+  color: $color__title--subdued;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  font-size: 1.2rem;
+  font-weight: 500;
+  justify-content: center;
+
+  @include breakpoint('large') {
+    font-size: 1.6rem;
+  }
+
+  @include breakpoint('huge') {
+    color: $color__title;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+}

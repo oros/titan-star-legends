@@ -1,0 +1,32 @@
+// Fairly rudimentary breakpoint system; in an actual product would
+// want to target real-world device breakpoints.
+
+@mixin breakpoint($breakpoint) {
+  @if ($breakpoint == 'small') {
+    @media (max-width: 480px) {
+      @content;
+    }
+  }
+
+  @else if ($breakpoint == 'medium') {
+    @media (min-width: 481px) and (max-width: 800px) {
+      @content;
+    }
+  }
+
+  @else if ($breakpoint == 'large') {
+    @media (min-width: 801px) and (max-width: 1200px) {
+      @content;
+    }
+  }
+
+  @else if ($breakpoint == 'huge') {
+    @media (min-width: 1201px) {
+      @content;
+    }
+  }
+
+  @media (max-width: $breakpoint) {
+    @content;
+  }
+}

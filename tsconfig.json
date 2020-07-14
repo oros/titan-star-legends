@@ -13,6 +13,9 @@
       "foundation/*": [
         "client/foundation/*"
       ],
+      "styles/*": [
+        "client/styles/*"
+      ],
     },
     "sourceMap": true,
     "target": "es6",
