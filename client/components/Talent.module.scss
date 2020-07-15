@@ -1,24 +1,40 @@
-$border__talent: 4px solid #4f4f4f;
-$border__talent--hover: 4px solid #5e7a99;
-$border__talent--selected: 4px solid #6da6e1;
+@import '~styles/fonts';
+
+$color__talent: #4f4f4f;
+$color__talent--highlight: $color__text--highlight;
+$color__talent--hover: #5e7a99;
+$color__talent--selected: #6da6e1;
+$color__talent--unselect: #ee4488;
 
 .Talent {
   background: url('~assets/talent-icons-sprite.png');
   background-position: 0 100%;
   background-size: 800%;
-  border: $border__talent;
+  border: 4px solid $color__talent;
   flex-shrink: 0;
   height: 4rem;
   width: 4rem;
 
   &.Selected {
     background-position-y: 0;
-    border: $border__talent--selected;
+    border-color: $color__talent--selected;
+
+    &.MaxedOut {
+      border-color: $color__talent--highlight;
+    }
   }
 
   &:hover {
-    border: $border__talent--hover;
+    border-color: $color__talent--hover;
     cursor: pointer;
+
+    &.MaxedOut {
+      border-color: $color__talent--hover;
+    }
+
+    &.Selected {
+      border-color: $color__talent--unselect;
+    }
   }
 }
 

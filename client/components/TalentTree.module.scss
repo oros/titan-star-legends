@@ -7,22 +7,43 @@ $border__talent-path: 1px solid #0d1116;
 $border__talent-path--selected: 1px solid #3b3e40;
 
 .TalentTree {
-  align-items: flex-start;
   color: $color__text--primary;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-auto-rows: min-content;
+  grid-gap: 1rem;
+  grid-template-columns: min-content 1fr;
   height: 100%;
-  justify-content: flex-start;
   text-transform: uppercase;
   width: 100%;
 
   @include breakpoint(medium) {
-    flex-direction: row;
-    justify-content: center;
+    grid-auto-flow: column;
+    grid-template-columns: min-content;
+    grid-template-rows: min-content 1fr;
   }
 
   @include breakpoint(small) {
-    flex-direction: column;
+    grid-auto-flow: row;
+    grid-auto-rows: min-content;
+    grid-gap: 0;
+    grid-template-columns: 1fr;
+    margin-top: 1rem;
+  }
+}
+
+.TalentName {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  @include breakpoint(medium-and-smaller) {
+    align-items: flex-end;
+    justify-content: center;
+    margin-right: 0;
+    text-align: center;
   }
 }
 
@@ -46,18 +67,6 @@ $border__talent-path--selected: 1px solid #3b3e40;
 
   @include breakpoint(small) {
     padding: 2rem 1rem;
-  }
-}
-
-.TalentName {
-  flex-shrink: 0;
-  margin-right: 4rem;
-  text-align: center;
-
-  @include breakpoint(medium-and-smaller) {
-    justify-content: center;
-    margin-right: 0;
-    margin-bottom: 1rem;
   }
 }
 

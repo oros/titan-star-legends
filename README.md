@@ -26,6 +26,7 @@ Navigate to http://localhost:3000 in your browser.
 - Prototyped with four Talent paths across four responsive breakpoints; the aim was to build for more edge-cases.
 - Instead of right-click to remove points, left-clicking a selected talent will unselect that talent. Overriding default browser behaviour for right-click context menus can be a slippery slope.
 - Rudimentary loadout sharing through stringified/encoded URL that updates as the loadout changes.
+- Allowed for clicking any Talent and best-attempt auto-selecting/deselecting the necessary Talents.
 
 ## Resources
 - [Create a React App From Scratch](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658)

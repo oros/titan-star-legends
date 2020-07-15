@@ -4,16 +4,27 @@ import { useTalentLoadout } from 'foundation/LoadoutProvider';
 import Styles from './Points.module.scss';
 
 export function Points() {
-  const { maxTalents, setTalentLoadout, talentLoadout, usedTalents } = useTalentLoadout();
+  const {
+    isMaxedOut,
+    maxTalents,
+    setTalentLoadout,
+    talentLoadout,
+    usedTalents,
+  } = useTalentLoadout();
 
   useEffect(() => {
     const pageUrl = `?loadout=${btoa(JSON.stringify(talentLoadout))}`;
     window.history.pushState('', '', pageUrl);
   }, [talentLoadout]);
 
+  const className = `
+    ${Styles.PointsContainer}
+    ${isMaxedOut && Styles.MaxedOut}
+  `;
+
   return (
     <div className={Styles.Points}>
-      <div className={Styles.PointsContainer}>
+      <div className={className}>
         <div className={Styles.Spent}>
           {`${usedTalents} / ${maxTalents}`}
         </div>

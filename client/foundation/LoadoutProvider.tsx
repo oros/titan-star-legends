@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { TalentLoadout } from 'types/TalentLoadout';
 
 const defaultTalentLoadout: TalentLoadout = [{
-  name: 'Talent Path 1',
+  name: 'Culinary Mastery',
   talents: [
     { id: 'talent-001', selected: true, type: 'Chevron' },
     { id: 'talent-002', selected: true, type: 'Cutlery' },
@@ -10,20 +10,20 @@ const defaultTalentLoadout: TalentLoadout = [{
     { id: 'talent-004', selected: false, type: 'Crown' },
   ]
 }, {
-  name: 'Talent Path 2',
+  name: 'Danger Zone',
   talents: [
     { id: 'talent-005', selected: false, type: 'Skull' },
     { id: 'talent-006', selected: false, type: 'Lightning' },
   ]
 }, {
-  name: 'Talent Path 3',
+  name: 'Relaxation',
   talents: [
     { id: 'talent-007', selected: true, type: 'Boat' },
     { id: 'talent-008', selected: true, type: 'Snorkel' },
     { id: 'talent-009', selected: true, type: 'Crown' },
   ]
 }, {
-  name: 'Talent Path 4',
+  name: 'Literally Just A Skull',
   talents: [
     { id: 'talent-010', selected: true, type: 'Skull' },
   ],
@@ -48,54 +48,74 @@ export function useTalentLoadout() {
     talents.filter(({ selected }) => selected)
   )).length;
 
+  const isMaxedOut = usedTalents === MAX_TALENTS;
+
   const toggleTalentSelected = (talentGroupIndex: number, talentIndex: number) => {
     setTalentLoadout((talentLoadout) => {
       const nextTalentLoadout = [...talentLoadout];
 
-      // Get the clicked Talent.
-      const activeTalent =
-        talentLoadout?.[talentGroupIndex]?.talents?.[talentIndex];
+      // Get the clicked TalentGroup and Talent.
+      const activeTalentGroup = talentLoadout?.[talentGroupIndex];
+      const activeTalent = activeTalentGroup?.talents?.[talentIndex];
 
       // Ensure we were able to find the Talent.
       if (!activeTalent) {
         return talentLoadout;
       }
 
-      // If the Talent is currently selected...
-      if (activeTalent.selected) {
-        // Get the next Talent in the tree.
-        const nextTalentSelected =
-          nextTalentLoadout?.[talentGroupIndex]?.talents?.[talentIndex + 1]?.selected;
+      // Defines what we intend to do for this Talent.
+      const intendedSelection = !activeTalent.selected;
 
-        // If the next Talent in the tree is selected, do nothing.
-        if (nextTalentSelected === true) {
-          return talentLoadout;
-        }
+      if (intendedSelection) {
+        let remainingSelections = MAX_TALENTS - usedTalents;
+
+        // We want to select this Talent.
+        activeTalentGroup?.talents.some((talent) => {
+          // Ensure we don't go past our maximum allotment.
+          if (remainingSelections === 0) {
+            return true;
+          }
+
+          // Select this Talent if it needs to be added.
+          if (!talent.selected) {
+            talent.selected = true;
+            remainingSelections -= 1;
+          }
+
+          // Stop once we reach our clicked Talent.
+          return (talent.id === activeTalent.id);
+        });
       } else {
-        // Ensure we have enough points remaining.
-        if (usedTalents === MAX_TALENTS) {
-          return talentLoadout;
-        }
+        let bypassTalent = true;
 
-        // Get the previous Talent in the three.
-        const prevTalentSelected =
-          nextTalentLoadout?.[talentGroupIndex]?.talents?.[talentIndex - 1]?.selected;
+        // We want to unselect this Talent.
+        activeTalentGroup?.talents.some((talent) => {
+          // If we hit our clicked Talent, stop bypassing.
+          if (talent.id === activeTalent.id) {
+            bypassTalent = false;
+          }
 
-        // If the previous Talent in the tree is not selected, do nothing.
-        if (prevTalentSelected === false) {
-          return talentLoadout;
-        }
+          // Skip all of the initial Talents until we find the clicked one.
+          if (bypassTalent) {
+            return false;
+          }
+
+          // If we find an unselected Talent, no need to keep going.
+          if (!talent.selected) {
+            return true;
+          }
+
+          // Unselect this Talent.
+          talent.selected = false;
+        });
       }
 
-      // We're in a good state, and can toggle this Talent's selected state.
-      activeTalent.selected = !activeTalent.selected;
-
-      // Update our data source.
       return nextTalentLoadout;
     });
   };
 
   return {
+    isMaxedOut,
     maxTalents: MAX_TALENTS,
     setTalentLoadout,
     talentLoadout,

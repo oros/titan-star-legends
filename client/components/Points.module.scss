@@ -17,6 +17,13 @@
   @include breakpoint(small) {
     padding: 1rem;
   }
+
+  &.MaxedOut {
+    >.Spent,
+    >.Label {
+      color: $color__text--highlight;
+    }
+  }
 }
 
 .Spent {

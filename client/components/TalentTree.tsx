@@ -11,26 +11,30 @@ export function TalentTree() {
   return (
     <div className={Styles.TalentTree}>
       {talentLoadout.map(({ name, talents }, talentGroupIndex) => (
-        <div key={name} className={Styles.TalentGroup}>
-          <span className={Styles.TalentName}>{name}</span>
-          {talents.map(({ id, selected, type }, talentIndex) => {
-            const className = `
+        <>
+          <div className={Styles.TalentName}>
+            {name}
+          </div>
+          <div className={Styles.TalentGroup} key={name}>
+            {talents.map(({ id, selected, type }, talentIndex) => {
+              const className = `
               ${Styles.TalentPath}
               ${selected && Styles.Selected}
             `;
 
-            return (
-              <React.Fragment key={id}>
-                <div className={className} />
-                <Talent
-                  onClick={() => toggleTalentSelected(talentGroupIndex, talentIndex)}
-                  selected={selected}
-                  type={type}
-                />
-              </React.Fragment>
-            );
-          })}
-        </div>
+              return (
+                <React.Fragment key={id}>
+                  <div className={className} />
+                  <Talent
+                    onClick={() => toggleTalentSelected(talentGroupIndex, talentIndex)}
+                    selected={selected}
+                    type={type}
+                  />
+                </React.Fragment>
+              );
+            })}
+          </div>
+        </>
       ))}
     </div>
   );
