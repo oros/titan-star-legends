@@ -2,7 +2,7 @@
 
 $color__talent: #4f4f4f;
 $color__talent--highlight: $color__text--highlight;
-$color__talent--hover: #5e7a99;
+$color__talent--hover: #5e9970;
 $color__talent--selected: #6da6e1;
 $color__talent--unselect: #ee4488;
 
@@ -29,11 +29,13 @@ $color__talent--unselect: #ee4488;
     cursor: pointer;
 
     &.MaxedOut {
-      border-color: $color__talent--hover;
+      border-color: $color__talent;
+      cursor: auto;
     }
 
     &.Selected {
       border-color: $color__talent--unselect;
+      cursor: pointer;
     }
   }
 }
