@@ -7,6 +7,7 @@ export function Points() {
   const {
     isMaxedOut,
     maxTalents,
+    resetTalentLoadout,
     setTalentLoadout,
     talentLoadout,
     usedTalents,
@@ -30,6 +31,13 @@ export function Points() {
         </div>
         <div className={Styles.Label}>
           Points Spent
+        </div>
+        <div
+          className={Styles.Reset}
+          onClick={resetTalentLoadout}
+          role="button"
+        >
+          Reset
         </div>
       </div>
     </div>

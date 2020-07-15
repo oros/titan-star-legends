@@ -11,16 +11,16 @@ export function TalentTree() {
   return (
     <div className={Styles.TalentTree}>
       {talentLoadout.map(({ name, talents }, talentGroupIndex) => (
-        <>
+        <React.Fragment key={name}>
           <div className={Styles.TalentName}>
             {name}
           </div>
           <div className={Styles.TalentGroup} key={name}>
             {talents.map(({ id, selected, type }, talentIndex) => {
               const className = `
-              ${Styles.TalentPath}
-              ${selected && Styles.Selected}
-            `;
+                ${Styles.TalentPath}
+                ${selected && Styles.Selected}
+              `;
 
               return (
                 <React.Fragment key={id}>
@@ -34,7 +34,7 @@ export function TalentTree() {
               );
             })}
           </div>
-        </>
+        </React.Fragment>
       ))}
     </div>
   );

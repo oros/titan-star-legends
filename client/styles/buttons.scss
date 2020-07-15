@@ -1,0 +1,19 @@
+@import '~styles/fonts';
+
+$background__color--hover: #00206080;
+$background__color--primary: #00002080;
+
+@mixin button--plain {
+  background-color: $background__color--primary;
+  border: 1px solid $color__text--primary;
+  border-radius: 3px;
+  color: $color__text--primary;
+  cursor: pointer;
+  padding: 1rem;
+  user-select: none;
+  width: 100%;
+
+  &:hover {
+    background-color: $background__color--hover;
+  }
+}

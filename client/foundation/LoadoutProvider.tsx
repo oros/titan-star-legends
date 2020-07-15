@@ -4,8 +4,8 @@ import { TalentLoadout } from 'types/TalentLoadout';
 const defaultTalentLoadout: TalentLoadout = [{
   name: 'Culinary Mastery',
   talents: [
-    { id: 'talent-001', selected: true, type: 'Chevron' },
-    { id: 'talent-002', selected: true, type: 'Cutlery' },
+    { id: 'talent-001', selected: false, type: 'Chevron' },
+    { id: 'talent-002', selected: false, type: 'Cutlery' },
     { id: 'talent-003', selected: false, type: 'Cake' },
     { id: 'talent-004', selected: false, type: 'Crown' },
   ]
@@ -18,14 +18,14 @@ const defaultTalentLoadout: TalentLoadout = [{
 }, {
   name: 'Relaxation',
   talents: [
-    { id: 'talent-007', selected: true, type: 'Boat' },
-    { id: 'talent-008', selected: true, type: 'Snorkel' },
-    { id: 'talent-009', selected: true, type: 'Crown' },
+    { id: 'talent-007', selected: false, type: 'Boat' },
+    { id: 'talent-008', selected: false, type: 'Snorkel' },
+    { id: 'talent-009', selected: false, type: 'Crown' },
   ]
 }, {
   name: 'Literally Just A Skull',
   talents: [
-    { id: 'talent-010', selected: true, type: 'Skull' },
+    { id: 'talent-010', selected: false, type: 'Skull' },
   ],
 }];
 
@@ -50,12 +50,22 @@ export function useTalentLoadout() {
 
   const isMaxedOut = usedTalents === MAX_TALENTS;
 
+  const resetTalentLoadout = () => {
+    setTalentLoadout([...defaultTalentLoadout]);
+  };
+
   const toggleTalentSelected = (talentGroupIndex: number, talentIndex: number) => {
     setTalentLoadout((talentLoadout) => {
-      const nextTalentLoadout = [...talentLoadout];
+      // Deep copy/replace of Talent state.
+      const nextTalentLoadout = talentLoadout.map(((talentPath) => ({
+        ...talentPath,
+        talents: talentPath.talents.map((talent) => ({
+          ...talent,
+        })),
+      })));
 
       // Get the clicked TalentGroup and Talent.
-      const activeTalentGroup = talentLoadout?.[talentGroupIndex];
+      const activeTalentGroup = nextTalentLoadout?.[talentGroupIndex];
       const activeTalent = activeTalentGroup?.talents?.[talentIndex];
 
       // Ensure we were able to find the Talent.
@@ -117,6 +127,7 @@ export function useTalentLoadout() {
   return {
     isMaxedOut,
     maxTalents: MAX_TALENTS,
+    resetTalentLoadout,
     setTalentLoadout,
     talentLoadout,
     toggleTalentSelected,
@@ -129,16 +140,17 @@ export interface Props {
 }
 
 export function LoadoutProvider({ children }: Props) {
-  // Attempt to parse the URL to use an existing loadout.
   const [talentLoadout, setTalentLoadout] = useState(() => {
     const params = new URLSearchParams(window.location.search);
     const queryTalentLoadout = params.get('loadout');
 
     try {
+      // Attempt to parse the URL to use an existing loadout.
       const explicitTalentLoadout = JSON.parse(atob(queryTalentLoadout));
       return explicitTalentLoadout;
     } catch { }
 
+    // Return the default loadout.
     return defaultTalentLoadout;
   });
 
