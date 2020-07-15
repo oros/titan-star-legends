@@ -30,7 +30,7 @@ $color__talent--unselect: #ee4488;
 
     &.MaxedOut {
       border-color: $color__talent;
-      cursor: auto;
+      cursor: not-allowed;
     }
 
     &.Selected {
