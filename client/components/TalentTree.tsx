@@ -1,46 +1,37 @@
 import React from 'react';
 import { Talent } from 'components/Talent';
+import { useTalentLoadout } from 'foundation/LoadoutProvider';
 import { Talent as TalentType } from 'types/Talent';
-import { TalentLoadout } from 'types/TalentLoadout';
 
 import Styles from './TalentTree.module.scss';
 
-const renderTalentPath = (talent: TalentType): React.ReactNode => {
-  if (!talent) {
-    return null;
-  }
+export function TalentTree() {
+  const { talentLoadout, toggleTalentSelected } = useTalentLoadout();
 
-  const className = `
-    ${Styles.NodePath}
-    ${talent?.unlocks?.selected && Styles.Selected}
-  `;
-
-  return (
-    <>
-      <div className={Styles.Node}>
-        <Talent id={talent?.id} selected={talent?.selected} />
-      </div>
-      {talent?.unlocks && <div className={className} />}
-      {renderTalentPath(talent?.unlocks)}
-    </>
-  );
-}
-
-export interface Props {
-  loadout: TalentLoadout;
-}
-
-export function TalentTree({ loadout }: Props) {
   return (
     <div className={Styles.TalentTree}>
-      {loadout.map(({ name, talent }) => {
-        return (
-          <div className={Styles.TalentGroup}>
-            <span className={Styles.TalentName}>{name}</span>
-            {renderTalentPath(talent)}
-          </div>
-        );
-      })}
+      {talentLoadout.map(({ name, talents }, talentGroupIndex) => (
+        <div key={name} className={Styles.TalentGroup}>
+          <span className={Styles.TalentName}>{name}</span>
+          {talents.map(({ id, selected, type }, talentIndex) => {
+            const className = `
+              ${Styles.TalentPath}
+              ${selected && Styles.Selected}
+            `;
+
+            return (
+              <React.Fragment key={id}>
+                <div className={className} />
+                <Talent
+                  onClick={() => toggleTalentSelected(talentGroupIndex, talentIndex)}
+                  selected={selected}
+                  type={type}
+                />
+              </React.Fragment>
+            );
+          })}
+        </div>
+      ))}
     </div>
   );
 }

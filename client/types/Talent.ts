@@ -1,7 +1,7 @@
 import { TalentName } from 'types/TalentName';
 
 export interface Talent {
-  id: TalentName;
+  id: string;
   selected?: boolean;
-  unlocks?: Talent;
+  type: TalentName;
 }

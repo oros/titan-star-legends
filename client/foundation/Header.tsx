@@ -9,8 +9,10 @@ export function Header() {
         TitanStar Legends
       </div>
       <div className={Styles.Subtitle}>
-        <div>Rune Mastery Loadout</div>
-        <div>&nbsp;Talent Calculator 9000&nbsp;</div>
+        Rune Mastery Loadout
+      </div>
+      <div className={Styles.Detail}>
+        Talent Calculator 9000
       </div>
     </div>
   );

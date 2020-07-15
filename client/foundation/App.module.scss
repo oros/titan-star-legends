@@ -1,24 +1,58 @@
+@import '~styles/breakpoints';
+
+$background__points--small: #060809;
+
 .App {
   background: url('~assets/talent-calc-bg.png');
   background-repeat: no-repeat;
   background-size: cover;
   display: grid;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: auto;
   padding: 1rem 2rem;
   width: 100vw;
 
   grid-template-areas:
-    'header'
-    'content';
+    'header  header'
+    'talents points';
 
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 15rem;
   grid-template-rows: min-content 1fr;
+
+  @include breakpoint(large) {
+    grid-template-columns: 1fr 10rem;
+  }
+
+  @include breakpoint(medium-and-smaller) {
+    grid-template-areas:
+    'header'
+    'points'
+    'talents';
+
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content min-content 1fr;
+  }
+
+  @include breakpoint(small) {
+    padding: 0;
+  }
 }
 
 .Header {
   grid-area: header;
+  min-height: 1rem;
 }
 
-.Content {
-  grid-area: content;
+.Talents {
+  grid-area: talents;
+}
+
+.Points {
+  grid-area: points;
+  position: sticky;
+  top: 0px;
+
+  @include breakpoint(small) {
+    background: $background__points--small;
+  }
 }

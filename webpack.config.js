@@ -8,6 +8,7 @@ module.exports = {
     port: 3000,
     publicPath: "http://localhost:3000/dist/",
   },
+  devtool: "source-map",
   entry: "./client/index.tsx",
   mode: "development",
   module: {
@@ -31,10 +32,16 @@ module.exports = {
             loader: "css-loader",
             options: {
               modules: true,
+              sourceMap: true,
               url: true,
             }
           },
-          "sass-loader",
+          {
+            loader: "sass-loader",
+            options: {
+              sourceMap: true,
+            }
+          }
         ]
       },
       {

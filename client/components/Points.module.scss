@@ -1,0 +1,30 @@
+@import '~styles/breakpoints';
+@import '~styles/fonts';
+
+.Points {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.PointsContainer {
+  padding: 2rem 1rem;
+  text-align: center;
+
+  @include breakpoint(small) {
+    padding: 1rem;
+  }
+}
+
+.Spent {
+  color: $color__text--primary;
+  font-size: 1.4rem;
+}
+
+.Label {
+  color: $color__text--subdued;
+  font-size: 1rem;
+}

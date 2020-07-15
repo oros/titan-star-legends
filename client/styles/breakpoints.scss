@@ -1,32 +1,42 @@
-// Fairly rudimentary breakpoint system; in an actual product would
-// want to target real-world device breakpoints.
+$min-widths: (
+  small: 0px,
+  medium: 481px,
+  large: 801px,
+);
+
+$max-widths: (
+  small: 480px,
+  medium: 800px,
+  large: 1200px,
+);
 
 @mixin breakpoint($breakpoint) {
-  @if ($breakpoint == 'small') {
-    @media (max-width: 480px) {
+  $smaller-than-index: str-index($breakpoint, '-and-smaller');
+
+  @if ($smaller-than-index != null) {
+    $breakpoint-size: str-slice($breakpoint, 1, $smaller-than-index - 1);
+    $max-width: map-get($max-widths, $breakpoint-size);
+
+    @media (max-width: $max-width) {
       @content;
     }
   }
 
-  @else if ($breakpoint == 'medium') {
-    @media (min-width: 481px) and (max-width: 800px) {
+  $larger-than-index: str-index($breakpoint, '-and-larger');
+
+  @if ($larger-than-index != null) {
+    $breakpoint-size: str-slice($breakpoint, 1, $larger-than-index - 1);
+    $min-width: map-get($min-widths, $breakpoint-size);
+
+    @media (min-width: $min-width) {
       @content;
     }
   }
 
-  @else if ($breakpoint == 'large') {
-    @media (min-width: 801px) and (max-width: 1200px) {
-      @content;
-    }
-  }
+  $min-width: map-get($min-widths, $breakpoint);
+  $max-width: map-get($max-widths, $breakpoint);
 
-  @else if ($breakpoint == 'huge') {
-    @media (min-width: 1201px) {
-      @content;
-    }
-  }
-
-  @media (max-width: $breakpoint) {
+  @media (min-width: $min-width) and (max-width: $max-width) {
     @content;
   }
 }

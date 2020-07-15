@@ -1,11 +1,13 @@
 $border__talent: 4px solid #4f4f4f;
-$border__talent--selected: 4px solid #4f4f4f;
+$border__talent--hover: 4px solid #5e7a99;
+$border__talent--selected: 4px solid #6da6e1;
 
 .Talent {
   background: url('~assets/talent-icons-sprite.png');
   background-position: 0 100%;
   background-size: 800%;
   border: $border__talent;
+  flex-shrink: 0;
   height: 4rem;
   width: 4rem;
 
@@ -13,8 +15,41 @@ $border__talent--selected: 4px solid #4f4f4f;
     background-position-y: 0;
     border: $border__talent--selected;
   }
+
+  &:hover {
+    border: $border__talent--hover;
+    cursor: pointer;
+  }
+}
+
+.Boat {
+  background-position-x: -400%;
+}
+
+.Cake {
+  background-position-x: -200%;
 }
 
 .Chevron {
   background-position-x: 0;
+}
+
+.Crown {
+  background-position-x: -300%;
+}
+
+.Cutlery {
+  background-position-x: -100%;
+}
+
+.Lightning {
+  background-position-x: -600%;
+}
+
+.Skull {
+  background-position-x: -700%;
+}
+
+.Snorkel {
+  background-position-x: -500%;
 }

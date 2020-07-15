@@ -4,21 +4,23 @@ import { TalentName } from 'types/TalentName';
 import Styles from './Talent.module.scss';
 
 export interface Props {
-  id: TalentName;
-  selected?: boolean;
+  onClick(): void;
+  selected: boolean;
+  type: TalentName;
 }
 
 export function Talent({
-  id,
+  onClick,
   selected,
+  type,
 }: Props) {
   const className = `
     ${Styles.Talent}
-    ${Styles[id]}
+    ${Styles[type]}
     ${selected && Styles.Selected}
   `;
 
   return (
-    <div className={className} />
+    <div className={className} onClick={onClick} />
   );
 }
