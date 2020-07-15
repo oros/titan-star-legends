@@ -28,3 +28,17 @@
   color: $color__text--subdued;
   font-size: 1rem;
 }
+
+.Share {
+  padding: 0 2rem;
+  width: 100%;
+
+  > textarea {
+    resize: none;
+    width: 100%;
+  }
+
+  > input {
+    width: 100%;
+  }
+}

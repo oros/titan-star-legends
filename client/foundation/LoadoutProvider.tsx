@@ -97,6 +97,7 @@ export function useTalentLoadout() {
 
   return {
     maxTalents: MAX_TALENTS,
+    setTalentLoadout,
     talentLoadout,
     toggleTalentSelected,
     usedTalents,
@@ -108,7 +109,18 @@ export interface Props {
 }
 
 export function LoadoutProvider({ children }: Props) {
-  const [talentLoadout, setTalentLoadout] = useState(defaultTalentLoadout);
+  // Attempt to parse the URL to use an existing loadout.
+  const [talentLoadout, setTalentLoadout] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    const queryTalentLoadout = params.get('loadout');
+
+    try {
+      const explicitTalentLoadout = JSON.parse(atob(queryTalentLoadout));
+      return explicitTalentLoadout;
+    } catch { }
+
+    return defaultTalentLoadout;
+  });
 
   return (
     <Context.Provider value={{ talentLoadout, setTalentLoadout }}>
