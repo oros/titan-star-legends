@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import { useTalentLoadout } from 'foundation/LoadoutProvider';
 import { TalentName } from 'types/TalentName';
 
@@ -17,14 +18,14 @@ export function Talent({
 }: Props) {
   const { isMaxedOut } = useTalentLoadout();
 
-  const className = `
-    ${Styles.Talent}
-    ${Styles[type]}
-    ${selected && Styles.Selected}
-    ${isMaxedOut && Styles.MaxedOut}
-  `;
+  const talentClassNames = classNames(
+    Styles.Talent,
+    Styles[type],
+    { [Styles.Selected]: selected },
+    { [Styles.MaxedOut]: isMaxedOut },
+  );
 
   return (
-    <div className={className} onClick={onClick} />
+    <div className={talentClassNames} onClick={onClick} />
   );
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import { Talent } from 'components/Talent';
 import { useTalentLoadout } from 'foundation/LoadoutProvider';
 import { Talent as TalentType } from 'types/Talent';
@@ -17,16 +18,18 @@ export function TalentTree() {
           </div>
           <div className={Styles.TalentGroup} key={name}>
             {talents.map(({ id, selected, type }, talentIndex) => {
-              const className = `
-                ${Styles.TalentPath}
-                ${selected && Styles.Selected}
-              `;
+              const talentPathClassNames = classNames(
+                Styles.TalentPath,
+                { [Styles.Selected]: selected },
+              );
 
               return (
                 <React.Fragment key={id}>
-                  <div className={className} />
+                  <div className={talentPathClassNames} />
                   <Talent
-                    onClick={() => toggleTalentSelected(talentGroupIndex, talentIndex)}
+                    onClick={() =>
+                      toggleTalentSelected(talentGroupIndex, talentIndex)
+                    }
                     selected={selected}
                     type={type}
                   />

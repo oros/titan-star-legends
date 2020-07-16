@@ -56,13 +56,9 @@ export function useTalentLoadout() {
 
   const toggleTalentSelected = (talentGroupIndex: number, talentIndex: number) => {
     setTalentLoadout((talentLoadout) => {
-      // Deep copy/replace of Talent state.
-      const nextTalentLoadout = talentLoadout.map(((talentPath) => ({
-        ...talentPath,
-        talents: talentPath.talents.map((talent) => ({
-          ...talent,
-        })),
-      })));
+      // Deep copy of TalentLoadout.
+      const nextTalentLoadout: TalentLoadout =
+        JSON.parse(JSON.stringify(talentLoadout));
 
       // Get the clicked TalentGroup and Talent.
       const activeTalentGroup = nextTalentLoadout?.[talentGroupIndex];

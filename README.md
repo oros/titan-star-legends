@@ -22,6 +22,16 @@ titan-star-legends > npm start
 
 Navigate to http://localhost:3000 in your browser.
 
+## Tests
+
+A handful of tests were added as an example. To run the tests, execute the following.
+
+```
+titan-star-legends > npm test
+```
+
+`Points.test.tsx` reflects the most thorough suite.
+
 ## Decisions
 - Prototyped with four Talent paths across four responsive breakpoints; the aim was to build for more edge-cases.
 - Instead of right-click to remove points, left-clicking a selected talent will unselect that talent. Overriding default browser behaviour for right-click context menus can be a slippery slope.

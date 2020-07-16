@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import classNames from 'classnames';
 import { useTalentLoadout } from 'foundation/LoadoutProvider';
 
 import Styles from './Points.module.scss';
@@ -8,7 +9,6 @@ export function Points() {
     isMaxedOut,
     maxTalents,
     resetTalentLoadout,
-    setTalentLoadout,
     talentLoadout,
     usedTalents,
   } = useTalentLoadout();
@@ -18,14 +18,14 @@ export function Points() {
     window.history.pushState('', '', pageUrl);
   }, [talentLoadout]);
 
-  const className = `
-    ${Styles.PointsContainer}
-    ${isMaxedOut && Styles.MaxedOut}
-  `;
+  const pointsContainerClassName = classNames(
+    Styles.PointsContainer,
+    { [Styles.MaxedOut]: isMaxedOut },
+  );
 
   return (
     <div className={Styles.Points}>
-      <div className={className}>
+      <div className={pointsContainerClassName}>
         <div className={Styles.Spent}>
           {`${usedTalents} / ${maxTalents}`}
         </div>
