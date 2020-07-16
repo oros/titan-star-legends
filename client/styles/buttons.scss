@@ -3,15 +3,25 @@
 $background__color--hover: #00206080;
 $background__color--primary: #00002080;
 
+@mixin button--focus {
+  &:focus {
+    outline: 2px solid #00cc00;
+    outline-offset: 8px;
+  }
+}
+
 @mixin button--plain {
+  @include button--focus();
+
   background-color: $background__color--primary;
   border: 1px solid $color__text--primary;
   border-radius: 3px;
   color: $color__text--primary;
   cursor: pointer;
+  font-size: 1rem;
   padding: 1rem;
+  transition: background-color 200ms ease-out;
   user-select: none;
-  width: 100%;
 
   &:hover {
     background-color: $background__color--hover;

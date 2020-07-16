@@ -12,8 +12,8 @@ const defaultTalentLoadout: TalentLoadout = [{
 }, {
   name: 'Danger Zone',
   talents: [
-    { id: 'talent-005', selected: false, type: 'Skull' },
-    { id: 'talent-006', selected: false, type: 'Lightning' },
+    { id: 'talent-005', selected: false, type: 'Lightning' },
+    { id: 'talent-006', selected: false, type: 'Skull' },
   ]
 }, {
   name: 'Relaxation',

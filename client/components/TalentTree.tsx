@@ -7,7 +7,11 @@ import { Talent as TalentType } from 'types/Talent';
 import Styles from './TalentTree.module.scss';
 
 export function TalentTree() {
-  const { talentLoadout, toggleTalentSelected } = useTalentLoadout();
+  const {
+    isMaxedOut,
+    talentLoadout,
+    toggleTalentSelected,
+  } = useTalentLoadout();
 
   return (
     <div className={Styles.TalentTree}>
@@ -27,6 +31,7 @@ export function TalentTree() {
                 <React.Fragment key={id}>
                   <div className={talentPathClassNames} />
                   <Talent
+                    disabled={isMaxedOut && !selected}
                     onClick={() =>
                       toggleTalentSelected(talentGroupIndex, talentIndex)
                     }

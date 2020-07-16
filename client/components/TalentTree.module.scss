@@ -2,9 +2,9 @@
 @import '~styles/fonts';
 
 $background__talent-path: #1c1e1f;
-$background__talent-path--selected: #303133;
+$background__talent-path--selected: #757b85;
 $border__talent-path: 1px solid #0d1116;
-$border__talent-path--selected: 1px solid #3b3e40;
+$border__talent-path--selected: 1px solid #cfdbe4;
 
 .TalentTree {
   color: $color__text--primary;
@@ -77,6 +77,7 @@ $border__talent-path--selected: 1px solid #3b3e40;
   flex: 1;
   min-height: 1.2rem;
   min-width: 1.2rem;
+  transition: background-color 200ms ease-out;
 
   &.Selected {
     background: $background__talent-path--selected;

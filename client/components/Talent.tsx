@@ -6,12 +6,14 @@ import { TalentName } from 'types/TalentName';
 import Styles from './Talent.module.scss';
 
 export interface Props {
+  disabled: boolean;
   onClick(): void;
   selected: boolean;
   type: TalentName;
 }
 
 export function Talent({
+  disabled,
   onClick,
   selected,
   type,
@@ -20,12 +22,26 @@ export function Talent({
 
   const talentClassNames = classNames(
     Styles.Talent,
-    Styles[type],
-    { [Styles.Selected]: selected },
+    { [Styles.Disabled]: disabled },
     { [Styles.MaxedOut]: isMaxedOut },
+    { [Styles.Selected]: selected },
+  );
+
+  const buttonClassNames = classNames(
+    Styles.Button,
+    Styles[type],
   );
 
   return (
-    <div className={talentClassNames} onClick={onClick} />
+    <div className={talentClassNames}>
+      <button
+        aria-label={type}
+        className={buttonClassNames}
+        disabled={disabled}
+        onClick={onClick}
+        title={`${type}${disabled ? ' - Not enough points' : ''}`}
+        type="button"
+      />
+    </div>
   );
 }

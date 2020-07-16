@@ -30,15 +30,16 @@ export function Points() {
           {`${usedTalents} / ${maxTalents}`}
         </div>
         <div className={Styles.Label}>
-          Points Spent
+          {`${isMaxedOut ? 'Max ' : ''}Points Spent`}
         </div>
-        <div
+        <button
+          aria-label="Reset loadout"
           className={Styles.Reset}
           onClick={resetTalentLoadout}
-          role="button"
+          type="button"
         >
           Reset
-        </div>
+        </button>
       </div>
     </div>
   );
