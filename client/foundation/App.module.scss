@@ -51,6 +51,7 @@ $background__points--small: #060809;
   grid-area: points;
   position: sticky;
   top: 0px;
+  z-index: 1;
 
   @include breakpoint(small) {
     background: $background__points--small;

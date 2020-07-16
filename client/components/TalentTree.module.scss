@@ -40,7 +40,7 @@ $border__talent-path--selected: 1px solid #cfdbe4;
   justify-content: flex-start;
 
   @include breakpoint(medium-and-smaller) {
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
     margin-right: 0;
     text-align: center;
